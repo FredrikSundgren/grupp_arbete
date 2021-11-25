@@ -1,16 +1,14 @@
 /*Pop Up Fönster*/
-.dialog
-{
+
+.dialog {
     display: none;
 }
 
-.dialog.opened
-{
+.dialog.opened {
     display: block;
 }
 
-.dialog__window
-{
+.dialog__window {
     display: inline-block;
     position: fixed;
     top: 50%;
@@ -22,12 +20,11 @@
     margin: auto;
     text-align: center;
     z-index: 101;
-    width: 65%; 
+    width: 65%;
     height: 70%;
 }
 
-.dialog__mask
-{
+.dialog__mask {
     position: fixed;
     top: 0;
     left: 0;
@@ -39,8 +36,7 @@
     z-index: 100;
 }
 
-.dialog__img
-{
+.dialog__img {
     margin: auto;
     padding: 15px;
     grid-column: 1/2;
@@ -48,8 +44,8 @@
     position: absolute;
     top: 5px;
 }
-.shop-popup-img
-{
+
+.shop-popup-img {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -60,8 +56,7 @@
     align-content: center;
 }
 
-#shop-window
-{
+#shop-window {
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr;
@@ -72,8 +67,7 @@
     height: 90%;
 }
 
-#shop-window .dialog__info
-{
+#shop-window .dialog__info {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -85,9 +79,83 @@
     align-content: center;
 }
 
-.exbtn
-{
+.exbtn {
     position: fixed;
     top: 5px;
     right: 5px;
+}
+
+
+/* Startsidan */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.flex__btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn__cart {
+    border: none;
+    background: none;
+}
+
+h1 {
+    text-align: center;
+    font-size: 4em;
+}
+
+span {
+    font-size: 2.2em;
+}
+
+.flex__products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+}
+
+.flex__products img {
+    width: 300px;
+    height: 300px;
+    padding: 5px 0 0 6px;
+    filter: grayscale(70%);
+}
+
+img:hover {
+    filter: grayscale(0);
+}
+
+.img__block {
+    background: white;
+    border: 1px solid black;
+    width: 310px;
+    height: 400px;
+    cursor: pointer;
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.flex__nav {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 1.5em;
+    margin: 30px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }

@@ -3,14 +3,14 @@ let titleArray = [];
 let descArray = [];
 let lastshownprod;
 let previousActiveElement;
-const KEYCODE = {ESC: 27};
-const exbtn = document.querySelector('.exbtn');
-const dialog = document.querySelector('.dialog');
-const dialogimg = dialog.querySelector('.dialog__img');
-const dialogtext = dialog.querySelector('.dialog__info');
-const dialogmask = dialog.querySelector('.dialog__mask');
-const shopwindow = dialog.querySelector('#shop-window');
-
+const KEYCODE = { ESC: 27 };
+const exbtn = document.querySelector(".exbtn");
+const dialog = document.querySelector(".dialog");
+const dialogimg = dialog.querySelector(".dialog__img");
+const dialogtext = dialog.querySelector(".dialog__info");
+const dialogmask = dialog.querySelector(".dialog__mask");
+const shopwindow = dialog.querySelector("#shop-window");
+const main = document.querySelector(".flex__products");
 fetch("./images.json")
     .then((response) => response.json())
 
@@ -19,96 +19,89 @@ fetch("./images.json")
 
     let imgData = data;
 
-    imgData.forEach(images =>
-        {
-            let div = document.createElement("div");
-            div.setAttribute("class", "shop-div");
-            document.body.appendChild(div);
+    imgData.forEach((images) => {
+        let div = document.createElement("div");
+        div.setAttribute("class", "shop-div");
+        document.querySelector(".flex__products").appendChild(div);
 
-            imgArray.push(images.url);
-            titleArray.push(images.title);
-            descArray.push(images.info);
+        imgArray.push(images.url);
+        titleArray.push(images.title);
+        descArray.push(images.info);
 
-            div.innerHTML += `<h2>${images.title}</h2> <img class=${images.class} src=${images.url}>`;
-        });
+        div.innerHTML += ` <div class='img__block'> <img class=${images.class} src=${images.url}>
+        <h2>${images.title}</h2> <h3> Pris: ${images.info.price}</h3></div>`;
+    });
 
     let showimg = document.querySelectorAll(".popup-img");
 
-    if(showimg)
-    {
-        showimg.forEach(function(img, index)
-            {
-                img.onclick = function()
-                {
-                    lastshownprod = index;
-                    let i = lastshownprod;
-                    popUpWindow();
-        
-                    let title = document.createElement("h2");
-                    title.setAttribute("class", "shop-popup-title");
-                    dialogtext.appendChild(title);
-        
-                    let img = document.createElement("img");
-                    img.setAttribute("class", "shop-popup-img")
-                    dialogimg.appendChild(img);
-        
-                    let desc = document.createElement("p");
-                    desc.setAttribute("class", "shop-popup-desc");
-                    dialogtext.appendChild(desc);
+    if (showimg) {
+        showimg.forEach(function(img, index) {
+            img.onclick = function() {
+                lastshownprod = index;
+                let i = lastshownprod;
+                popUpWindow();
 
-                    let size = document.createElement("p");
-                    size.setAttribute("class", "shop-popup-size");
-                    dialogtext.appendChild(size);
+                let title = document.createElement("h2");
+                title.setAttribute("class", "shop-popup-title");
+                dialogtext.appendChild(title);
 
-                    let price = document.createElement("p");
-                    price.setAttribute("class", "shop-popup-price");
-                    dialogtext.appendChild(price);
+                let img = document.createElement("img");
+                img.setAttribute("class", "shop-popup-img");
+                dialogimg.appendChild(img);
 
-                    let btn = document.createElement("button");
-                    btn.setAttribute("onclick", "Add-To-Cart()");
-                    btn.setAttribute("id", "shop-popup-btn");
-                    dialogtext.appendChild(btn);
-                    btn.innerHTML = "Köp";
-        
-                    img.setAttribute("src", imgArray[i]);
-                    title.innerHTML = titleArray[i];
-                    desc.innerHTML = descArray[i].description;
-                    size.innerHTML = "Storlek: " + descArray[i].size;
-                    price.innerHTML = "Pris: " + descArray[i].price;
+                let desc = document.createElement("p");
+                desc.setAttribute("class", "shop-popup-desc");
+                dialogtext.appendChild(desc);
 
-                    function popUpWindow()
-                    {
-                        previousActiveElement = document.activeElement;
-                        
-                        dialog.classList.add('opened');
+                let size = document.createElement("p");
+                size.setAttribute("class", "shop-popup-size");
+                dialogtext.appendChild(size);
 
-                        dialogmask.addEventListener('click', closeDialog);
-                        exbtn.addEventListener('click', closeDialog);
-                        document.addEventListener('keydown', checkCloseDialog);
+                let price = document.createElement("p");
+                price.setAttribute("class", "shop-popup-price");
+                dialogtext.appendChild(price);
 
-                        dialog.querySelector('.exbtn').focus();
-                    }
+                let btn = document.createElement("button");
+                btn.setAttribute("onclick", "Add-To-Cart()");
+                btn.setAttribute("id", "shop-popup-btn");
+                dialogtext.appendChild(btn);
+                btn.innerHTML = "Köp";
 
-                    function checkCloseDialog(press)
-                    {
-                        if(press.keyCode === KEYCODE.ESC)
-                        closeDialog();
-                    }
+                img.setAttribute("src", imgArray[i]);
+                title.innerHTML = titleArray[i];
+                desc.innerHTML = descArray[i].description;
+                size.innerHTML = "Storlek: " + descArray[i].size;
+                price.innerHTML = "Pris: " + descArray[i].price;
 
-                    function closeDialog()
-                    {
-                        dialogmask.removeEventListener('click', closeDialog);
-                        exbtn.removeEventListener('click', closeDialog);
-                        document.removeEventListener('keydown', checkCloseDialog);
-                        document.querySelector("#shop-popup-btn").remove();
+                function popUpWindow() {
+                    previousActiveElement = document.activeElement;
 
-                        dialogtext.innerHTML = "";
-                        dialogimg.innerHTML = "";
+                    dialog.classList.add("opened");
 
-                        dialog.classList.remove('opened');
-                        previousActiveElement.focus();
-                    }
+                    dialogmask.addEventListener("click", closeDialog);
+                    exbtn.addEventListener("click", closeDialog);
+                    document.addEventListener("keydown", checkCloseDialog);
+
+                    dialog.querySelector(".exbtn").focus();
                 }
-            });
+
+                function checkCloseDialog(press) {
+                    if (press.keyCode === KEYCODE.ESC) closeDialog();
+                }
+
+                function closeDialog() {
+                    dialogmask.removeEventListener("click", closeDialog);
+                    exbtn.removeEventListener("click", closeDialog);
+                    document.removeEventListener("keydown", checkCloseDialog);
+                    document.querySelector("#shop-popup-btn").remove();
+
+                    dialogtext.innerHTML = "";
+                    dialogimg.innerHTML = "";
+
+                    dialog.classList.remove("opened");
+                    previousActiveElement.focus();
+                }
+            };
+        });
     }
 });
