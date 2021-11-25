@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  height: 1500px;
+}
+
+.shop-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+article {
+  align-items: center;
+}
+
+h2 {
+margin-top: 50px;
+}
+
+hr {
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.shop-list-prod {
+  display: flex;
+  align-items: center;
+}
+
+.shop-list-prod div {
+  margin-left: 50px;
+}
+
+.shop-pay {
+  margin: 50px;
+}
+
+
+.shop-form {
+  padding: 20px;
+  margin: 10px;
+}
+
+.shop-form-message {
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+.shop-form-label {
+  display: inline-block;
+  margin: 20px;
+}
+
+.shop-order {
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+button {
+  padding: 10px;
+  border-radius: 15px;
+  background-color: white;
+  border: 1px solid black;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 640px) {
+  .shop-list-amount button {
+    display: none;
+  }
+  .shop-form {
+  display: flex;
+  flex-wrap: wrap;
+}
