@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt</title>
+    <link href="style-contact.css" rel="stylesheet">
 </head>
 <body>
     <main>
         <article>
             <h2>Kontakta oss</h2>
-            <p>Välkommen att kontakta oss via mail eller telefon eller via kontaktformuläret</p>
+            <p>Välkommen att kontakta oss via mail eller telefon eller fyll i kontaktformuläret</p>
         </article>
 
         <article>
@@ -22,13 +23,13 @@
                 <form action="" method="post">
                     <label>Namn:
                         <input id="myinput" type="text" name="name" placeholder="för- och efternamn"/>
-                    </label>
+                    </label><br>
                     <label>E-post:
                         <input id="myinput" type="email" name="email" placeholder="e-post" required />
-                    </label>
+                    </label><br>
                     <label>Tel.nr:
-                        <input id="myinput" type="tel" name="phone" placeholder="+46 123 456 789"/>
-                    </label>
+                        <input id="myinput" type="phone" name="tel" placeholder="+46 123 456 789"/>
+                    </label><br>
                     <div class="message">Meddelande:<br>
                         <textarea name="description" placeholder="Ditt meddelande"></textarea>
                     </div>
