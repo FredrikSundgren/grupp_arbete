@@ -1,0 +1,109 @@
+body {
+  margin: 0;
+  background-color: #96b397;
+  color: #263238;
+}
+
+.shop-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.shop-container
+{
+    padding: 0 20px;
+    margin: auto;
+    background-color: #ffffe5;
+    width: 50%;
+}
+
+article {
+  align-items: center;
+}
+
+h2 {
+margin-top: 50px;
+}
+
+hr {
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: #cbba83;
+    height: 0.5px;
+}
+
+.shop-form-pay
+{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.shop-list-prod {
+  display: flex;
+  align-items: center;
+}
+
+.shop-list-prod div {
+  margin-left: 50px;
+}
+
+.shop-pay {
+  margin: 10px 0;
+}
+
+
+.shop-form {
+  padding: 0;
+}
+
+.shop-form-message {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.shop-form-label {
+  display: inline-block;
+  margin: 20px;
+  margin-left: 0;
+}
+
+.shop-form-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 30px;
+    padding: 0;
+}
+
+.shop-order {
+  margin: 10px;
+}
+
+button {
+  padding: 10px;
+  border-radius: 15px;
+  background-color: white;
+  border: 1px solid black;
+  font-size: 16px;
+}
+
+/*
+@media screen and (max-width: 640px) 
+{
+  .shop-list-amount button 
+  {
+    display: none;
+  }
+  .shop-form
+  {
+  display: flex;
+  flex-wrap: wrap;
+    }
+}*/
