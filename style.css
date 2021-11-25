@@ -1,0 +1,93 @@
+/*Pop Up Fönster*/
+.dialog
+{
+    display: none;
+}
+
+.dialog.opened
+{
+    display: block;
+}
+
+.dialog__window
+{
+    display: inline-block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 2px solid black;
+    padding: 18px;
+    margin: auto;
+    text-align: center;
+    z-index: 101;
+    width: 65%; 
+    height: 70%;
+}
+
+.dialog__mask
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    opacity: 0.6;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.dialog__img
+{
+    margin: auto;
+    padding: 15px;
+    grid-column: 1/2;
+    height: 100%;
+    position: absolute;
+    top: 5px;
+}
+.shop-popup-img
+{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+#shop-window
+{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr;
+    position: fixed;
+    top: 0;
+    width: 90%;
+    margin: 0;
+    height: 90%;
+}
+
+#shop-window .dialog__info
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
+    padding: 0 20px;
+    width: 100%;
+    grid-column: 2/3;
+    align-content: center;
+}
+
+.exbtn
+{
+    position: fixed;
+    top: 5px;
+    right: 5px;
+}
