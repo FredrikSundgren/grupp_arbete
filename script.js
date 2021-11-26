@@ -25,7 +25,7 @@ fetch("./images.json")
         imgData.forEach((images) => {
             let div = document.createElement("div");
             div.setAttribute("class", "shop-div");
-            document.querySelector(".flex__products").appendChild(div);
+            main.append(div);
 
             imgArray.push(images.url);
             titleArray.push(images.title);
@@ -33,7 +33,7 @@ fetch("./images.json")
 
 
             div.innerHTML += ` <div class='img__block'> <img class=${images.class} src=${images.url}>
-        <h2>${images.title}</h2> <h3> Pris: ${images.info.price}kr  Size:${images.info.size}x${images.info.size1} cm</h3></div>`;
+        <h2>${images.title}</h2> <h3>Storlek: ${images.info.size}x${images.info.size1}cm     Pris: ${images.info.price}kr</h3></div>`;
         });
 
         let showimg = document.querySelectorAll(".popup-img");
