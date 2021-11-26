@@ -6,6 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <title>Shop</title>
 </head>
 
@@ -16,8 +19,9 @@
                     d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z" />
             </svg></button></div>
     <header class="flex__box">
-        <!-- <h1><span>T</span>he <span>F</span>hoto <span>S</span>hop </h1> -->
-        <h1>T F S</h1>
+        <div class="flex__title">
+        <h1>T</h1><h2>he </h2><h1>F</h1><h2>hoto</h2><h1>S</h1><h2>hop </h2>
+        </div>
         <nav class="flex__nav">
             <a href="#">test1</a>
             <a href="#">test2</a>
@@ -29,10 +33,9 @@
                     fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px" height="40px">
                     <path
                         d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z" />
-                </svg></button>
-
+                </svg>
+            </button>
         </div>
-
     </header>
 
     <h2 class='product__headline'>Produkter</h2>
@@ -43,7 +46,6 @@
                 <option id="sort__option " value="price">Pris</option>
                 <option id="sort__option " value="size">Storlek</option>
             </select>
-
         </form>
     </div>
     <main class="flex__products">
@@ -53,23 +55,8 @@
         <h2>TEST FOOTER</h2>
     </footer>
 
-
-
-
-
-
-
-
-
-
-
-
     <button>&gt;</button>
     <button>&lt;</button>
-
-
-
-
 
     <div class="dialog" role="dialog" aria-labelledby="dialog_title">
         <div class="dialog__window">
