@@ -13,8 +13,7 @@ const dialogtext = dialog.querySelector(".dialog__info");
 const dialogmask = dialog.querySelector(".dialog__mask");
 const shopwindow = dialog.querySelector("#shop-window");
 const main = document.querySelector(".flex__products");
-const sort = document.querySelector("#sort__option");
-
+const sort = document.querySelector("#sort__option")
 fetch("./images.json")
     .then((response) => response.json())
 
@@ -26,7 +25,7 @@ fetch("./images.json")
         imgData.forEach((images) => {
             let div = document.createElement("div");
             div.setAttribute("class", "shop-div");
-            document.querySelector(".flex__products").appendChild(div);
+            main.append(div);
 
             imgArray.push(images.url);
             titleArray.push(images.title);
@@ -34,7 +33,7 @@ fetch("./images.json")
 
 
             div.innerHTML += ` <div class='img__block'> <img class=${images.class} src=${images.url}>
-        <h2>${images.title}</h2> <h3> Pris: ${images.info.price}kr  Size:${images.info.size}x${images.info.size1} cm</h3></div>`;
+        <h2>${images.title}</h2> <h3>Storlek: ${images.info.size}x${images.info.size1}cm     Pris: ${images.info.price}kr</h3></div>`;
         });
 
         let showimg = document.querySelectorAll(".popup-img");
@@ -71,7 +70,7 @@ fetch("./images.json")
                     dialogtext.appendChild(price);
 
                     let btn = document.createElement("button");
-                    btn.setAttribute("onclick", "Add-To-Cart()");
+                    //btn.setAttribute("onclick", "Add-To-Cart()");//
                     btn.setAttribute("id", "shop-popup-btn");
                     dialogtext.appendChild(btn);
                     btn.innerHTML = "Köp";
@@ -111,23 +110,35 @@ fetch("./images.json")
                         previousActiveElement.focus();
                     }
 
-                    /* cart-popup */
+                    // add to cart //
 
-                    let cartDialog = document.querySelector('.cart_dialog');
+                    let shopPopupBtn = document.querySelectorAll("#shop-popup-btn");
 
-                    btn.addEventListener("click", cartPopup);
+                    shopPopupBtn[i].addEventListener('click', cartNumbers());
 
-                    function cartPopup () {
-                        cartDialog.classList.add("opened");
+                    function onLoadCartNumbers () {
+                        let productNumbers = localStorage.getItem('cartNumbers');
+
+                        if(productNumbers){
+                            document.querySelector('.btn__cart span').textContent = productNumbers;
+                        }
                     }
 
-                    function closeCartPopup () {
-                        cartDialog.classList.remove("opened");
+                    function cartNumbers() {
+                        let productNumbers = localStorage.getItem('cartNumbers');
+
+                        productNumbers = parseInt(productNumbers);
+
+                        if ( productNumbers ) {
+                            localStorage.setItem('cartNumbers', productNumbers + 1);
+                            document.querySelector('.btn__cart span').textContent = productNumbers + 1;
+                        } else {
+                            localStorage.setItem('cartNumbers', 1);
+                            document.querySelector('.btn__cart span').textContent = 1;
+                        }
                     }
 
-                    const exCartBtn = document.querySelector('.excartbtn');
-                    exCartBtn.addEventListener('click', closeCartPopup);
-
+                    onLoadCartNumbers();
                 };
             });
         }
