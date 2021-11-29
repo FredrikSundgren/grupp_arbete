@@ -79,7 +79,7 @@ fetch("./images.json")
                     title.innerHTML = titleArray[i];
                     desc.innerHTML = descArray[i].description;
                     size.innerHTML = "Storlek: " + descArray[i].size + "x" + descArray[i].size1 + "cm";
-                    price.innerHTML = "Pris: " + descArray[i].price + "cm";
+                    price.innerHTML = "Pris: " + descArray[i].price + "kr";
 
                     function popUpWindow() {
                         previousActiveElement = document.activeElement;
@@ -114,7 +114,11 @@ fetch("./images.json")
 
                     let shopPopupBtn = document.querySelectorAll("#shop-popup-btn");
 
-                    shopPopupBtn[i].addEventListener('click', cartNumbers());
+                    for (let i=0; i < shopPopupBtn.length; i++) {
+                        shopPopupBtn[i].addEventListener('click', () => {
+                            cartNumbers(titleArray[i], descArray[i]);
+                        })
+                    }
 
                     function onLoadCartNumbers () {
                         let productNumbers = localStorage.getItem('cartNumbers');
@@ -124,7 +128,9 @@ fetch("./images.json")
                         }
                     }
 
-                    function cartNumbers() {
+                    function cartNumbers(titleArray, descArray) {
+                        console.log("nu visas", title, desc);
+                        
                         let productNumbers = localStorage.getItem('cartNumbers');
 
                         productNumbers = parseInt(productNumbers);
@@ -136,7 +142,21 @@ fetch("./images.json")
                             localStorage.setItem('cartNumbers', 1);
                             document.querySelector('.btn__cart span').textContent = 1;
                         }
+
+                       /* setItems(title, price)*/
                     }
+
+                    /*function setItems(title, price) {
+                        let cartItems = localStorage.getItem('titleInCart');
+                        cartItems = JSON.parse(cartItems);
+
+                       
+
+                        title.inCart = 1;
+
+                        localStorage.setItems('titleInCart', JSON.stringify(title));
+
+                    }*/
 
                     onLoadCartNumbers();
                 };
