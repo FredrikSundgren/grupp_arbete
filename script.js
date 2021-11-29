@@ -121,7 +121,7 @@ fetch("./images.json")
 
                     for (let i=0; i < shopPopupBtn.length; i++) {
                         shopPopupBtn[i].addEventListener('click', () => {
-                            cartNumbers(titleArray[i], descArray[i]);
+                            cartNumbers(descArray[i]);
                         })
                     }
 
@@ -133,8 +133,7 @@ fetch("./images.json")
                         }
                     }
 
-                    function cartNumbers(titleArray, descArray) {
-                        console.log("nu visas", title, desc);
+                    function cartNumbers(descArray) {
                         
                         let productNumbers = localStorage.getItem('cartNumbers');
 
@@ -148,16 +147,18 @@ fetch("./images.json")
                             document.querySelector('.btn__cart span').textContent = 1;
                         }
 
-                       setItems(title, price)
+                       setItems(desc, price)
                     }
 
-                    function setItems(title, price) {
-                        console.log("inside");
-                        console.log("my prod is", title, price);
+                    function setItems(desc, price) {
+                        let cartItems = localStorage.getItem('productsInCart');
+                        console.log("my cartitems are", cartItems);
+                        
                         descArray.inCart = 1;
 
-                        let cartItems = {
-                            [titleArray[i]]: title
+                        cartItems = {
+                            [descArray[i].description]: desc,
+                            [descArray[i].price]: price
                         }
 
                         
