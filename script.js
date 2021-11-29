@@ -65,6 +65,10 @@ fetch("./images.json")
                     size1.setAttribute("class", "shop-popup-size");
                     dialogtext.appendChild(size1);
 
+                    let inCart = document.createElement("span");
+                    inCart.setAttribute("class", "in_cart");
+                    dialogtext.appendChild(inCart)
+
                     let price = document.createElement("p");
                     price.setAttribute("class", "shop-popup-price");
                     dialogtext.appendChild(price);
@@ -80,6 +84,7 @@ fetch("./images.json")
                     desc.innerHTML = descArray[i].description;
                     size.innerHTML = "Storlek: " + descArray[i].size + "x" + descArray[i].size1 + "cm";
                     price.innerHTML = "Pris: " + descArray[i].price + "kr";
+
 
                     function popUpWindow() {
                         previousActiveElement = document.activeElement;
@@ -143,20 +148,22 @@ fetch("./images.json")
                             document.querySelector('.btn__cart span').textContent = 1;
                         }
 
-                       /* setItems(title, price)*/
+                       setItems(title, price)
                     }
 
-                    /*function setItems(title, price) {
-                        let cartItems = localStorage.getItem('titleInCart');
-                        cartItems = JSON.parse(cartItems);
+                    function setItems(title, price) {
+                        console.log("inside");
+                        console.log("my prod is", title, price);
+                        descArray.inCart = 1;
 
-                       
+                        let cartItems = {
+                            [titleArray[i]]: title
+                        }
 
-                        title.inCart = 1;
+                        
+                        localStorage.setItem("productsInCart", JSON.stringify(cartItems));
 
-                        localStorage.setItems('titleInCart', JSON.stringify(title));
-
-                    }*/
+                    }
 
                     onLoadCartNumbers();
                 };
