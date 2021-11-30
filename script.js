@@ -152,16 +152,15 @@ fetch("./images.json")
 
                     function setItems(desc, price) {
                         let cartItems = localStorage.getItem('productsInCart');
-                        console.log("my cartitems are", cartItems);
+
+                        cartItems = JSON.parse(cartItems);
                         
                         descArray.inCart = 1;
 
                         cartItems = {
-                            [descArray[i].description]: desc,
-                            [descArray[i].price]: price
+                            [descArray[i].description]: desc
                         }
 
-                        
                         localStorage.setItem("productsInCart", JSON.stringify(cartItems));
 
                     }
