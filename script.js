@@ -70,7 +70,7 @@ fetch("./images.json")
                     dialogtext.appendChild(price);
 
                     let btn = document.createElement("button");
-                    btn.setAttribute("onclick", "Add-To-Cart()");
+                    //btn.setAttribute("onclick", "Add-To-Cart()");//
                     btn.setAttribute("id", "shop-popup-btn");
                     dialogtext.appendChild(btn);
                     btn.innerHTML = "Köp";
@@ -79,7 +79,8 @@ fetch("./images.json")
                     title.innerHTML = titleArray[i];
                     desc.innerHTML = descArray[i].description;
                     size.innerHTML = "Storlek: " + descArray[i].size + "x" + descArray[i].size1 + "cm";
-                    price.innerHTML = "Pris: " + descArray[i].price + "cm";
+                    price.innerHTML = "Pris: " + descArray[i].price + "kr";
+
 
                     function popUpWindow() {
                         previousActiveElement = document.activeElement;
@@ -109,6 +110,58 @@ fetch("./images.json")
                         dialog.classList.remove("opened");
                         previousActiveElement.focus();
                     }
+
+
+                    // add to cart //
+
+                    let shopPopupBtn = document.querySelectorAll("#shop-popup-btn");
+
+                    for (let i=0; i < shopPopupBtn.length; i++) {
+                        shopPopupBtn[i].addEventListener('click', () => {
+                            cartNumbers(titleArray[i], descArray[i]);
+                        })
+                    }
+
+                    function onLoadCartNumbers () {
+                        let productNumbers = localStorage.getItem('cartNumbers');
+
+                        if(productNumbers){
+                            document.querySelector('.btn__cart span').textContent = productNumbers;
+                        }
+                    }
+
+                    function cartNumbers(titleArray, descArray) {
+                        console.log("nu visas", title, desc);
+                        
+                        let productNumbers = localStorage.getItem('cartNumbers');
+
+                        productNumbers = parseInt(productNumbers);
+
+                        if ( productNumbers ) {
+                            localStorage.setItem('cartNumbers', productNumbers + 1);
+                            document.querySelector('.btn__cart span').textContent = productNumbers + 1;
+                        } else {
+                            localStorage.setItem('cartNumbers', 1);
+                            document.querySelector('.btn__cart span').textContent = 1;
+                        }
+
+                       /* setItems(title, price)*/
+                    }
+
+                    /*function setItems(title, price) {
+                        let cartItems = localStorage.getItem('titleInCart');
+                        cartItems = JSON.parse(cartItems);
+
+                       
+
+                        title.inCart = 1;
+
+                        localStorage.setItems('titleInCart', JSON.stringify(title));
+
+                    }*/
+
+                    onLoadCartNumbers();
+
                 };
             });
         }
