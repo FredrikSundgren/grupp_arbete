@@ -1,6 +1,5 @@
 let imgArray = [];
-let titleArray = [];
-let descArray = [];
+let prodArray = [];
 let lastshownprod;
 let previousActiveElement;
 const KEYCODE = {
@@ -14,11 +13,11 @@ const dialogmask = dialog.querySelector(".dialog__mask");
 const shopwindow = dialog.querySelector("#shop-window");
 const main = document.querySelector(".flex__products");
 const sort = document.querySelector("#sort__option")
+
 fetch("./images.json")
     .then((response) => response.json())
 
     .then((data) => {
-        console.log(data);
 
         let imgData = data;
 
@@ -28,12 +27,11 @@ fetch("./images.json")
             main.append(div);
 
             imgArray.push(images.url);
-            titleArray.push(images.title);
-            descArray.push(images.info);
+            prodArray.push(images);
 
 
             div.innerHTML += ` <div class='img__block'> <img class=${images.class} src=${images.url}>
-        <h2>${images.title}</h2> <h3>Storlek: ${images.info.size}x${images.info.size1}cm     Pris: ${images.info.price}kr</h3></div>`;
+            <h2>${images.title}</h2> <h3>Storlek: ${images.info.size}x${images.info.size1}cm     Pris: ${images.info.price}kr</h3></div>`;
         });
 
         let showimg = document.querySelectorAll(".popup-img");
@@ -61,25 +59,25 @@ fetch("./images.json")
                     size.setAttribute("class", "shop-popup-size");
                     dialogtext.appendChild(size);
 
-                    let size1 = document.createElement("p");
-                    size1.setAttribute("class", "shop-popup-size");
-                    dialogtext.appendChild(size1);
-
                     let price = document.createElement("p");
                     price.setAttribute("class", "shop-popup-price");
                     dialogtext.appendChild(price);
 
+                    let incart = document.createElement("p");
+                    dialogtext.appendChild(incart);
+
                     let btn = document.createElement("button");
-                    btn.setAttribute("onclick", "Add-To-Cart()");
                     btn.setAttribute("id", "shop-popup-btn");
+                    btn.addEventListener("click", cartNumbers);
                     dialogtext.appendChild(btn);
                     btn.innerHTML = "Köp";
 
                     img.setAttribute("src", imgArray[i]);
-                    title.innerHTML = titleArray[i];
-                    desc.innerHTML = descArray[i].description;
-                    size.innerHTML = "Storlek: " + descArray[i].size + "x" + descArray[i].size1 + "cm";
-                    price.innerHTML = "Pris: " + descArray[i].price + "cm";
+                    title.innerHTML = prodArray[i].title;
+                    desc.innerHTML = prodArray[i].info.description;
+                    size.innerHTML = "Storlek: " + prodArray[i].info.size + "x" + prodArray[i].info.size1 + "cm";
+                    price.innerHTML = "Pris: " + prodArray[i].info.price + "kr";
+
 
                     function popUpWindow() {
                         previousActiveElement = document.activeElement;
@@ -109,9 +107,67 @@ fetch("./images.json")
                         dialog.classList.remove("opened");
                         previousActiveElement.focus();
                     }
+
+                    // add to cart //
+                    
+                        function cartNumbers() {
+                            totalprice();
+
+                            let productNumbers = localStorage.getItem('cartNumbers');
+    
+                            productNumbers = parseInt(productNumbers);
+    
+                            if (productNumbers) {
+                                localStorage.setItem('cartNumbers', productNumbers + 1);
+                                document.querySelector('.btn__cart span').textContent = productNumbers + 1;
+                            } else {
+                                localStorage.setItem('cartNumbers', 1);
+                                document.querySelector('.btn__cart span').textContent = 1;
+                            }
+    
+                           setItems(title, desc, price, size);
+                        }
+    
+                        function setItems() {
+                            let cartItems = localStorage.getItem('productsInCart');
+    
+                            cartItems = JSON.parse(cartItems);
+
+                            let quantity;
+                            if(cartItems != null){
+
+                                quantity = prodArray[i].inCart += 1;
+
+                                localStorage.setItem("quantity", quantity);
+
+                            }
+                            else{
+                                quantity = prodArray[i].inCart = 1;
+    
+                                cartItems = {
+                                    title: [prodArray[i].title],
+                                    desc: [prodArray[i].info.description],
+                                    size: [prodArray[i].info.size] +"x"+ [prodArray[i].info.size1],
+                                    price: [prodArray[i].info.price]
+                                }
+                            }
+                            
+                            localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+                            localStorage.setItem("quantity", quantity);
+                        }
+
+                        function totalprice(){
+                            let carttotal = localStorage.getItem("totalCost");
+
+                            if(carttotal != null){
+                                carttotal = parseInt(carttotal);
+                                localStorage.setItem("totalCost", carttotal + prodArray[i].info.price);
+                            }
+                            else{
+                                localStorage.setItem("totalCost", prodArray[i].info.price);
+                            }
+                        }
                 };
             });
         }
-
-
     });
