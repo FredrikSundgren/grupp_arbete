@@ -81,6 +81,7 @@ fetch("./images.json")
                     size.innerHTML = "Storlek: " + descArray[i].size + "x" + descArray[i].size1 + "cm";
                     price.innerHTML = "Pris: " + descArray[i].price + "kr";
 
+
                     function popUpWindow() {
                         previousActiveElement = document.activeElement;
 
@@ -109,6 +110,7 @@ fetch("./images.json")
                         dialog.classList.remove("opened");
                         previousActiveElement.focus();
                     }
+
 
                     // add to cart //
 
@@ -159,6 +161,7 @@ fetch("./images.json")
                     }*/
 
                     onLoadCartNumbers();
+
                 };
             });
         }
