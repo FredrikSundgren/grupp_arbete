@@ -65,6 +65,10 @@ fetch("./images.json")
                     size1.setAttribute("class", "shop-popup-size");
                     dialogtext.appendChild(size1);
 
+                    let inCart = document.createElement("span");
+                    inCart.setAttribute("class", "in_cart");
+                    dialogtext.appendChild(inCart)
+
                     let price = document.createElement("p");
                     price.setAttribute("class", "shop-popup-price");
                     dialogtext.appendChild(price);
@@ -111,14 +115,13 @@ fetch("./images.json")
                         previousActiveElement.focus();
                     }
 
-
                     // add to cart //
 
                     let shopPopupBtn = document.querySelectorAll("#shop-popup-btn");
 
                     for (let i=0; i < shopPopupBtn.length; i++) {
                         shopPopupBtn[i].addEventListener('click', () => {
-                            cartNumbers(titleArray[i], descArray[i]);
+                            cartNumbers(descArray[i]);
                         })
                     }
 
@@ -130,8 +133,7 @@ fetch("./images.json")
                         }
                     }
 
-                    function cartNumbers(titleArray, descArray) {
-                        console.log("nu visas", title, desc);
+                    function cartNumbers(descArray) {
                         
                         let productNumbers = localStorage.getItem('cartNumbers');
 
@@ -145,23 +147,25 @@ fetch("./images.json")
                             document.querySelector('.btn__cart span').textContent = 1;
                         }
 
-                       /* setItems(title, price)*/
+                       setItems(desc, price)
                     }
 
-                    /*function setItems(title, price) {
-                        let cartItems = localStorage.getItem('titleInCart');
+                    function setItems(desc, price) {
+                        let cartItems = localStorage.getItem('productsInCart');
+
                         cartItems = JSON.parse(cartItems);
+                        
+                        descArray.inCart = 1;
 
-                       
+                        cartItems = {
+                            [descArray[i].description]: desc
+                        }
 
-                        title.inCart = 1;
+                        localStorage.setItem("productsInCart", JSON.stringify(cartItems));
 
-                        localStorage.setItems('titleInCart', JSON.stringify(title));
-
-                    }*/
+                    }
 
                     onLoadCartNumbers();
-
                 };
             });
         }
