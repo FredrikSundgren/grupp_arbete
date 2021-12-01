@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varukorg</title>
+    <link rel="stylesheet" href="shoppingcart.css">
+</head>
+<body>
+
+<div class="shop-wrapper">
+    <main class="shop-container">
+        <article>
+            <h2>Varukorg</h2>
+            <div>
+                <ol>
+                    <li class="shop-list-prod">
+                        <div class="shop-list-item">tavla</div>
+                        <div class="shop-list-amount">
+                            <button>&#8722;</button>
+                            <span>1</span>
+                            <button>&#43;</button>
+                        </div>
+                        <div>
+                            <button class="shop-list-remove">ta bort</button>
+                        </div>
+                        <div>
+                            <div class="shop-list-total">100kr</div>
+                        </div>
+                    </li>
+                </ol>
+                <div class="shop-form-pay">
+                    <p>Att betala = </p>
+                    <div class="shop-pay-total">100kr</div>
+                </div>
+            </div>
+        </article>
+        <hr>
+        <article class="shop-form-container">
+            <p>Adress:</p>
+            <form class="shop-form">
+                <label class="shop-form-label">Förnamn:
+                    <div>
+                        <input class="shop-form-input" type="text" name="fname" required/>
+                    </div>
+                </label>
+                <label class="shop-form-label">Efternamn:
+                    <div>
+                        <input class="shop-form-input" type="text" name="lname" required/>
+                    </div>
+                </label><br>
+                <label class="shop-form-label">Adress:
+                    <div>
+                        <input class="shop-form-input" type="text" name="adresse" required />
+                    </div>
+                </label><br>
+                <label class="shop-form-label">Postnr:
+                    <div>
+                        <input class="shop-form-input" type="text" name="postalcode" required />
+                    </div>
+                </label>
+                <label class="shop-form-label">Stad:
+                    <div>
+                        <input class="shop-form-input" type="text" name="city" required />
+                    </div>
+                </label><br>
+                <label class="shop-form-label">E-post:
+                    <div>
+                        <input class="shop-form-input" type="email" name="email" required />
+                    </div>
+                </label>
+                <label class="shop-form-label">Telefon nr:
+                    <div>
+                        <input class="shop-form-input" type="tel" name="phone" required />
+                    </div>
+                </label>
+                <div class="shop-form-message">Välj betalalternativ:<br>
+                        <label class="shop-pay">Kortbetalning - Mastercard/Visa:
+                            <input type="radio" name="payment" checked/>
+                        </label>
+                        <label class="shop-pay">Klarna:
+                            <input type="radio" name="payment"/>
+                        </label>
+                        <label class="shop-pay">Swish:
+                            <input type="radio" name="payment"/>
+                        </label>
+                </div>
+            </form>
+        </article>
+        <hr>
+        <div class="shop-order">
+            <button class="shop-order-button">Beställ och fortsätt</button>
+        </div>
+    </main>
+    
+</div>
+<script>
+    function displayCart(){
+        let cartItems = localStorage.getItem("productsInCart");
+        cartItems = JSON.parse(cartItems);
+
+        console.log(cartItems);
+    }
+
+    displayCart();
+</script>
+</body>
+</html>

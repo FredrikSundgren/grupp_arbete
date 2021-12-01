@@ -68,7 +68,6 @@ fetch("./images.json")
 
                     let btn = document.createElement("button");
                     btn.setAttribute("id", "shop-popup-btn");
-                    btn.addEventListener("click", cartNumbers);
                     dialogtext.appendChild(btn);
                     btn.innerHTML = "Köp";
 
@@ -109,7 +108,13 @@ fetch("./images.json")
                     }
 
                     // add to cart //
-                    
+                    let shopPopupBtn = document.querySelectorAll("#shop-popup-btn");
+
+                    for (let i = 0; i < shopPopupBtn.length; i++) {
+                            shopPopupBtn[i].addEventListener("click", () => {
+                            cartNumbers();
+                        });
+                    }
                         function cartNumbers() {
                             totalprice();
 
@@ -125,7 +130,7 @@ fetch("./images.json")
                                 document.querySelector('.btn__cart span').textContent = 1;
                             }
     
-                           setItems(title, desc, price, size);
+                           setItems(title, desc, price, size, incart);
                         }
     
                         function setItems() {
@@ -133,27 +138,33 @@ fetch("./images.json")
     
                             cartItems = JSON.parse(cartItems);
 
-                            let quantity;
                             if(cartItems != null){
 
-                                quantity = prodArray[i].inCart += 1;
+                                prodArray[i].inCart += 1;
 
-                                localStorage.setItem("quantity", quantity);
-
-                            }
-                            else{
-                                quantity = prodArray[i].inCart = 1;
-    
                                 cartItems = {
-                                    title: [prodArray[i].title],
-                                    desc: [prodArray[i].info.description],
-                                    size: [prodArray[i].info.size] +"x"+ [prodArray[i].info.size1],
-                                    price: [prodArray[i].info.price]
+                                    product: {
+                                        title: prodArray[i].title,
+                                        desc: prodArray[i].info.description,
+                                        size: prodArray[i].info.size +"x"+ prodArray[i].info.size1,
+                                        price: prodArray[i].info.price,
+                                        incart: prodArray[i].inCart}
                                 }
                             }
-                            
+                            else{
+                                prodArray[i].inCart = 1;
+    
+                                cartItems = {
+                                    product: {
+                                        title: prodArray[i].title,
+                                        desc: prodArray[i].info.description,
+                                        size: prodArray[i].info.size +"x"+ prodArray[i].info.size1,
+                                        price: prodArray[i].info.price,
+                                        incart: prodArray[i].inCart}
+                                }
+                            }
+
                             localStorage.setItem("productsInCart", JSON.stringify(cartItems));
-                            localStorage.setItem("quantity", quantity);
                         }
 
                         function totalprice(){
@@ -167,7 +178,7 @@ fetch("./images.json")
                                 localStorage.setItem("totalCost", prodArray[i].info.price);
                             }
                         }
-                };
+                    }
             });
         }
     });
