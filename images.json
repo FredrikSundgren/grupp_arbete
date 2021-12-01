@@ -9,7 +9,8 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1618767438211-11ffdb8e1861?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      "alt": "Norrsken i Michigan, Amerika"
+      "alt": "Norrsken i Michigan, Amerika",
+      "inCart": 0
     },
     {
       "title": "Tripp igenom höstig skog",
@@ -21,7 +22,8 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1633248611990-ed00611b7c97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      "alt": "Bilväg igenom höstig skog"
+      "alt": "Bilväg igenom höstig skog",
+      "inCart": 0
     },
     {
       "title": "Nostalgi tripp",
@@ -33,7 +35,8 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1635701248071-ed01d3622db3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=924&q=80",
-      "alt": "Street Fighter 2 ute i ingenstans"
+      "alt": "Street Fighter 2 ute i ingenstans",
+      "inCart": 0
     },
     {
       "title": "Åskstorm långt borta",
@@ -45,7 +48,8 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1636517223759-e70b0069b26a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      "alt": "Åskstorm i Sun Prairie, WI, USA"
+      "alt": "Åskstorm i Sun Prairie, WI, USA",
+      "inCart": 0
     },
     {
       "title": "Vattenfall",
@@ -57,7 +61,8 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1637194990166-a8e87209f751?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
-      "alt": "Vattenfall i Island"
+      "alt": "Vattenfall i Island",
+      "inCart": 0
     },
     {
       "title": "Välkommen höst",
@@ -69,7 +74,8 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1637162330294-28cc8540d41d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
-      "alt": "Höstig lövhög"
+      "alt": "Höstig lövhög",
+      "inCart": 0
     },
     {
       "title": "De fyra pelarna",
@@ -81,7 +87,8 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1637717648706-86040bb7dfbc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8eEh4WVRNSExnT2N8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=60",
-      "alt": "Närbild på colosseum"
+      "alt": "Närbild på colosseum",
+      "inCart": 0
     },
     {
       "title": "Frusen i tid",
@@ -93,7 +100,8 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1637102839226-e6b3402a9a0a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
-      "alt": "Berg med skog och snötäckt sjö"
+      "alt": "Berg med skog och snötäckt sjö",
+      "inCart": 0
     },
     {
       "title": "Burg Eltz, Wierschem.",
@@ -105,7 +113,8 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1636725691774-e9c7cfb150ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
-      "alt": "Burg Eltz, Wierschem, Tyskland"
+      "alt": "Burg Eltz, Wierschem, Tyskland",
+      "inCart": 0
     },
     {
       "title": "Al Aqsa, Jerusalem, Israel",
@@ -117,7 +126,8 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1542317803-0fc679478393?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
-      "alt": "Al Aqsa, Jerusalem, Israel"
+      "alt": "Al Aqsa, Jerusalem, Israel",
+      "inCart": 0
     },
     {
       "title": "Kinesiska muren",
@@ -129,7 +139,8 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1633550391236-add8f543486c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
-      "alt": "Kinesiska muren"
+      "alt": "Kinesiska muren",
+      "inCart": 0
     },
     {
       "title": "Colosseum",
@@ -141,7 +152,8 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1573401491223-8b54e0f9926b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      "alt": "Colosseum i Rom, Italien"
+      "alt": "Colosseum i Rom, Italien",
+      "inCart": 0
     },
     {
       "title": "Retro cykel",
@@ -153,7 +165,8 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1630838700819-4d84b1f0a374?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
-      "alt": "Retro cykel i fokus med gråskala färger"
+      "alt": "Retro cykel i fokus med gråskala färger",
+      "inCart": 0
     },
     {
       "title": "Höstdag",
@@ -165,7 +178,8 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1634486662298-ac78754e9b74?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-      "alt": "Höstdag i Vosges, Frankrike"
+      "alt": "Höstdag i Vosges, Frankrike",
+      "inCart": 0
     },
     {
       "title": "Eiffeltornet",
@@ -177,7 +191,8 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1628326036318-9af1614d6584?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      "alt": "Eiffeltornet"
+      "alt": "Eiffeltornet",
+      "inCart": 0
     },
     {
       "title": "Portal till en ny värld",
@@ -189,7 +204,8 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1583248720918-a7054c5b8ea8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
-      "alt": "Kyrkofönster"
+      "alt": "Kyrkofönster",
+      "inCart": 0
     },
     {
       "title": "Reflektion",
@@ -201,7 +217,8 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1636950101519-a128cad64a4b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80",
-      "alt": "Lotus blomma på stilla vatten"
+      "alt": "Lotus blomma på stilla vatten",
+      "inCart": 0
     },
     {
       "title": "Magisk tunnel",
@@ -213,7 +230,8 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1635256143160-35fcb1bfccb2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=421&q=80",
-      "alt": "Skogstunnel bland gröna träd"
+      "alt": "Skogstunnel bland gröna träd",
+      "inCart": 0
     },
     {
       "title": "Halvmåne en stjärnklar natt",
@@ -225,7 +243,8 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1634242083752-323b6155c365?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-      "alt": "Halv måne i stjärnklar natt"
+      "alt": "Halv måne i stjärnklar natt",
+      "inCart": 0
     },
     {
       "title": "St. Basil's Katedral i Moskva",
@@ -237,6 +256,7 @@
       },
       "class": "popup-img",
       "url": "https://images.unsplash.com/photo-1634926638859-841e6d65cf68?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-      "alt": "St. Basil's Katedral Moskva"
+      "alt": "St. Basil's Katedral Moskva",
+      "inCart": 0
     }
   ]
