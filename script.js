@@ -22,7 +22,9 @@ fetch("./images.json")
 
     let imgData = data;
 
-    imgData.forEach((images) => {
+    console.log(imgData);
+
+    imgData.forEach((images, index) => {
       let div = document.createElement("div");
       div.setAttribute("class", "shop-div");
       main.append(div);
@@ -31,7 +33,7 @@ fetch("./images.json")
       titleArray.push(images.title);
       descArray.push(images.info);
 
-      div.innerHTML += ` <div class='img__block'> <img class=${images.class} src=${images.url}>
+      div.innerHTML += ` <div class='img__block'> <img class=${images.class} src=${images.url} data-img-index=${index}>
         <h2>${images.title}</h2> <h3>Storlek: ${images.info.size}x${images.info.size1}cm     Pris: ${images.info.price}kr</h3></div>`;
     });
 
