@@ -5,13 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Varukorg</title>
-    <link href="style-shoppingcart.css" rel="stylesheet">
+    <link rel="stylesheet" href="shoppingcart.css">
 </head>
 <body>
 
 <div class="shop-wrapper">
-    <header></header>
-    <main>
+    <main class="shop-container">
         <article>
             <h2>Varukorg</h2>
             <div>
@@ -31,15 +30,15 @@
                         </div>
                     </li>
                 </ol>
-                <div class="shop-pay">
-                    <p>Att betala</p>
+                <div class="shop-form-pay">
+                    <p>Att betala = </p>
                     <div class="shop-pay-total">100kr</div>
                 </div>
             </div>
         </article>
-        <hr/>
+        <hr>
         <article class="shop-form-container">
-            <p>Adress</p>
+            <p>Adress:</p>
             <form class="shop-form">
                 <label class="shop-form-label">Förnamn:
                     <div>
@@ -71,30 +70,40 @@
                         <input class="shop-form-input" type="email" name="email" required />
                     </div>
                 </label>
-                <label class="shop-form-label">Telefonnr:
+                <label class="shop-form-label">Telefon nr:
                     <div>
                         <input class="shop-form-input" type="tel" name="phone" required />
                     </div>
                 </label>
                 <div class="shop-form-message">Välj betalalternativ:<br>
-                </div>
-                <label class="shop-form-label">Kortbetalning - Mastercard/Visa:
-                    <input type="radio" name="payment" checked/>
-                </label>
-                <label class="shop-form-label">Klarna:
-                    <input type="radio" name="payment"/>
-                </label>
-                <label class="shop-form-label">Swish:
-                    <input type="radio" name="payment"/>
-                </label><br><hr/>
-                <div class="shop-order">
-                    <button class="shop-order-button">Beställ och fortsätt</button>
+                        <label class="shop-pay">Kortbetalning - Mastercard/Visa:
+                            <input type="radio" name="payment" checked/>
+                        </label>
+                        <label class="shop-pay">Klarna:
+                            <input type="radio" name="payment"/>
+                        </label>
+                        <label class="shop-pay">Swish:
+                            <input type="radio" name="payment"/>
+                        </label>
                 </div>
             </form>
         </article>
+        <hr>
+        <div class="shop-order">
+            <button class="shop-order-button">Beställ och fortsätt</button>
+        </div>
     </main>
-    <footer></footer>
+    
 </div>
+<script>
+    function displayCart(){
+        let cartItems = localStorage.getItem("productsInCart");
+        cartItems = JSON.parse(cartItems);
 
+        console.log(cartItems);
+    }
+
+    displayCart();
+</script>
 </body>
 </html>
