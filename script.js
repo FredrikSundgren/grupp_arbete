@@ -1,10 +1,9 @@
 let imgArray = [];
-let titleArray = [];
-let descArray = [];
+let prodArray = [];
 let lastshownprod;
 let previousActiveElement;
 const KEYCODE = {
-  ESC: 27,
+    ESC: 27
 };
 const exbtn = document.querySelector(".exbtn");
 const dialog = document.querySelector(".dialog");
@@ -13,193 +12,173 @@ const dialogtext = dialog.querySelector(".dialog__info");
 const dialogmask = dialog.querySelector(".dialog__mask");
 const shopwindow = dialog.querySelector("#shop-window");
 const main = document.querySelector(".flex__products");
-const sort = document.querySelector("#sort__option");
+const sort = document.querySelector("#sort__option")
+
 fetch("./images.json")
-  .then((response) => response.json())
+    .then((response) => response.json())
 
-  .then((data) => {
-    console.log(data);
+    .then((data) => {
 
-    let imgData = data;
+        let imgData = data;
 
-    imgData.forEach((images) => {
-      let div = document.createElement("div");
-      div.setAttribute("class", "shop-div");
-      main.append(div);
+        imgData.forEach((images) => {
+            let div = document.createElement("div");
+            div.setAttribute("class", "shop-div");
+            main.append(div);
 
-      imgArray.push(images.url);
-      titleArray.push(images.title);
-      descArray.push(images.info);
+            imgArray.push(images.url);
+            prodArray.push(images);
 
-      div.innerHTML += ` <div class='img__block'> <img class=${images.class} src=${images.url}>
-        <h2>${images.title}</h2> <h3>Storlek: ${images.info.size}x${images.info.size1}cm     Pris: ${images.info.price}kr</h3></div>`;
-    });
 
-    let showimg = document.querySelectorAll(".popup-img");
+            div.innerHTML += ` <div class='img__block'> <img class=${images.class} src=${images.url}>
+            <h2>${images.title}</h2> <h3>Storlek: ${images.info.size}x${images.info.size1}cm     Pris: ${images.info.price}kr</h3></div>`;
+        });
 
-    if (showimg) {
-      showimg.forEach(function (img, index) {
-        img.onclick = function () {
-          lastshownprod = index;
-          let i = lastshownprod;
-          popUpWindow();
+        let showimg = document.querySelectorAll(".popup-img");
 
-          let title = document.createElement("h2");
-          title.setAttribute("class", "shop-popup-title");
-          dialogtext.appendChild(title);
+        if (showimg) {
+            showimg.forEach(function (img, index) {
+                img.onclick = function () {
+                    lastshownprod = index;
+                    let i = lastshownprod;
+                    popUpWindow();
 
-          let img = document.createElement("img");
-          img.setAttribute("class", "shop-popup-img");
-          dialogimg.appendChild(img);
+                    let title = document.createElement("h2");
+                    title.setAttribute("class", "shop-popup-title");
+                    dialogtext.appendChild(title);
 
-          let desc = document.createElement("p");
-          desc.setAttribute("class", "shop-popup-desc");
-          dialogtext.appendChild(desc);
+                    let img = document.createElement("img");
+                    img.setAttribute("class", "shop-popup-img");
+                    dialogimg.appendChild(img);
 
-          let size = document.createElement("p");
-          size.setAttribute("class", "shop-popup-size");
-          dialogtext.appendChild(size);
+                    let desc = document.createElement("p");
+                    desc.setAttribute("class", "shop-popup-desc");
+                    dialogtext.appendChild(desc);
 
-          let size1 = document.createElement("p");
-          size1.setAttribute("class", "shop-popup-size");
-          dialogtext.appendChild(size1);
+                    let size = document.createElement("p");
+                    size.setAttribute("class", "shop-popup-size");
+                    dialogtext.appendChild(size);
 
-          let incart = document.createElement("span");
-          incart.setAttribute("class", "in_cart");
-          dialogtext.appendChild(incart);
+                    let price = document.createElement("p");
+                    price.setAttribute("class", "shop-popup-price");
+                    dialogtext.appendChild(price);
 
-          let price = document.createElement("p");
-          price.setAttribute("class", "shop-popup-price");
-          dialogtext.appendChild(price);
+                    let incart = document.createElement("p");
+                    dialogtext.appendChild(incart);
 
-          let btn = document.createElement("button");
-          //btn.setAttribute("onclick", "Add-To-Cart()");//
-          btn.setAttribute("id", "shop-popup-btn");
-          dialogtext.appendChild(btn);
-          btn.innerHTML = "Köp";
+                    let btn = document.createElement("button");
+                    btn.setAttribute("id", "shop-popup-btn");
+                    dialogtext.appendChild(btn);
+                    btn.innerHTML = "Köp";
 
-          img.setAttribute("src", imgArray[i]);
-          title.innerHTML = titleArray[i];
-          desc.innerHTML = descArray[i].description;
-          size.innerHTML =
-            "Storlek: " + descArray[i].size + "x" + descArray[i].size1 + "cm";
-          price.innerHTML = "Pris: " + descArray[i].price + "kr";
+                    img.setAttribute("src", imgArray[i]);
+                    title.innerHTML = prodArray[i].title;
+                    desc.innerHTML = prodArray[i].info.description;
+                    size.innerHTML = "Storlek: " + prodArray[i].info.size + "x" + prodArray[i].info.size1 + "cm";
+                    price.innerHTML = "Pris: " + prodArray[i].info.price + "kr";
 
-          function popUpWindow() {
-            previousActiveElement = document.activeElement;
 
-            dialog.classList.add("opened");
+                    function popUpWindow() {
+                        previousActiveElement = document.activeElement;
 
-            dialogmask.addEventListener("click", closeDialog);
-            exbtn.addEventListener("click", closeDialog);
-            document.addEventListener("keydown", checkCloseDialog);
+                        dialog.classList.add("opened");
 
-            dialog.querySelector(".exbtn").focus();
-          }
+                        dialogmask.addEventListener("click", closeDialog);
+                        exbtn.addEventListener("click", closeDialog);
+                        document.addEventListener("keydown", checkCloseDialog);
 
-          function checkCloseDialog(press) {
-            if (press.keyCode === KEYCODE.ESC) closeDialog();
-          }
+                        dialog.querySelector(".exbtn").focus();
+                    }
 
-          function closeDialog() {
-            dialogmask.removeEventListener("click", closeDialog);
-            exbtn.removeEventListener("click", closeDialog);
-            document.removeEventListener("keydown", checkCloseDialog);
-            document.querySelector("#shop-popup-btn").remove();
+                    function checkCloseDialog(press) {
+                        if (press.keyCode === KEYCODE.ESC) closeDialog();
+                    }
 
-            dialogtext.innerHTML = "";
-            dialogimg.innerHTML = "";
+                    function closeDialog() {
+                        dialogmask.removeEventListener("click", closeDialog);
+                        exbtn.removeEventListener("click", closeDialog);
+                        document.removeEventListener("keydown", checkCloseDialog);
+                        document.querySelector("#shop-popup-btn").remove();
 
-            dialog.classList.remove("opened");
-            previousActiveElement.focus();
-          }
+                        dialogtext.innerHTML = "";
+                        dialogimg.innerHTML = "";
 
-          // add to cart //
+                        dialog.classList.remove("opened");
+                        previousActiveElement.focus();
+                    }
 
-          let shopPopupBtn = document.querySelectorAll("#shop-popup-btn");
+                    // add to cart //
+                    let shopPopupBtn = document.querySelectorAll("#shop-popup-btn");
 
-          for (let i = 0; i < shopPopupBtn.length; i++) {
-            shopPopupBtn[i].addEventListener("click", () => {
-              onClickBuy(index);
+                    for (let i = 0; i < shopPopupBtn.length; i++) {
+                            shopPopupBtn[i].addEventListener("click", () => {
+                            cartNumbers();
+                        });
+                    }
+                        function cartNumbers() {
+                            totalprice();
+
+                            let productNumbers = localStorage.getItem('cartNumbers');
+    
+                            productNumbers = parseInt(productNumbers);
+    
+                            if (productNumbers) {
+                                localStorage.setItem('cartNumbers', productNumbers + 1);
+                                document.querySelector('.btn__cart span').textContent = productNumbers + 1;
+                            } else {
+                                localStorage.setItem('cartNumbers', 1);
+                                document.querySelector('.btn__cart span').textContent = 1;
+                            }
+    
+                           setItems(title, desc, price, size, incart);
+                        }
+    
+                        function setItems() {
+                            let cartItems = localStorage.getItem('productsInCart');
+    
+                            cartItems = JSON.parse(cartItems);
+
+                            if(cartItems != null){
+
+                                prodArray[i].inCart += 1;
+
+                                cartItems = {
+                                    product: {
+                                        title: prodArray[i].title,
+                                        desc: prodArray[i].info.description,
+                                        size: prodArray[i].info.size +"x"+ prodArray[i].info.size1,
+                                        price: prodArray[i].info.price,
+                                        incart: prodArray[i].inCart}
+                                }
+                            }
+                            else{
+                                prodArray[i].inCart = 1;
+    
+                                cartItems = {
+                                    product: {
+                                        title: prodArray[i].title,
+                                        desc: prodArray[i].info.description,
+                                        size: prodArray[i].info.size +"x"+ prodArray[i].info.size1,
+                                        price: prodArray[i].info.price,
+                                        incart: prodArray[i].inCart}
+                                }
+                            }
+
+                            localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+                        }
+
+                        function totalprice(){
+                            let carttotal = localStorage.getItem("totalCost");
+
+                            if(carttotal != null){
+                                carttotal = parseInt(carttotal);
+                                localStorage.setItem("totalCost", carttotal + prodArray[i].info.price);
+                            }
+                            else{
+                                localStorage.setItem("totalCost", prodArray[i].info.price);
+                            }
+                        }
+                    }
             });
-          }
-
-          function onLoadCartNumbers() {
-            let productNumbers = localStorage.getItem("cartNumbers");
-
-            if (productNumbers) {
-              document.querySelector(".btn__cart span").textContent =
-                productNumbers;
-            }
-          }
-
-          incart.innerHTML = descArray[i].incart;
-
-          function setItems(desc) {
-            let cartItems = localStorage.getItem("productsInCart");
-
-            cartItems = JSON.parse(cartItems);
-
-            cartItems = {
-              [descArray[i].description]: descArray,
-            };
-
-            localStorage.setItem("productsInCart", JSON.stringify(cartItems));
-          }
-
-          onLoadCartNumbers();
-        };
-      });
-    }
-
-    function onClickBuy(productindex) {
-      let cart = localStorage.getItem("cart");
-
-      if (cart == null) {
-        cart = {};
-      } else {
-        cart = JSON.parse(cart);
-      }
-
-      let productCount = cart[productindex];
-
-      if (productCount == null) {
-        productCount = 0;
-      }
-
-      productCount = productCount + 1;
-
-      cart = { ...cart, [productindex]: productCount };
-
-      localStorage.setItem("cart", JSON.stringify(cart));
-
-      onCartUpdated();
-    }
-
-    function onCartUpdated() {
-      let cart = localStorage.getItem("cart");
-
-      if (cart == null) {
-        cart = {};
-      } else {
-        cart = JSON.parse(cart);
-      }
-
-      let numProductsInCart = Object.values(cart).reduce(
-        (previousvalue, currentvalue) => previousvalue + currentvalue,
-        0
-      );
-      document.querySelector(".btn__cart span").textContent = numProductsInCart;
-
-      Object.keys(cart).forEach((productindex) => {
-        let productCount = cart[productindex];
-        if (productCount == 0) {
-          return;
         }
-
-        console.log(`${productindex}: ${productCount}`);
-      });
-    }
-
-    onCartUpdated();
-  });
+    });
