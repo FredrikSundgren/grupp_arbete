@@ -1,26 +1,94 @@
-body {
-  margin: 0;
-  height: 1500px;
-}
-
 .shop-wrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
 }
-
+a {
+  margin-left: 1em;
+  font-size: 1.5em;
+}
 article {
   align-items: center;
 }
 
 h2 {
-margin-top: 50px;
+  margin-top: 50px;
 }
 
 hr {
-    width: 100%;
-    margin-top: 50px;
-    margin-bottom: 50px;
+  width: 100%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.shop-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 650px;
+  justify-content: space-around;
+  margin-top: 50px;
+  margin: 0 auto;
+  margin: 50px;
+}
+
+.shop-container ion-icon {
+  font-size: 25px;
+  color: green;
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.product-header {
+  width: 100%;
+  /*max-width: 560px;*/
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 4px solid lightgrey;
+  margin: 0 auto;
+}
+
+.product-title {
+  width: 30%;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.price {
+  width: 30%;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.quantity {
+  width: 14%;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.total {
+  width: 30%;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.cart-products {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 auto;
+}
+
+.shop-total {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 50px;
 }
 
 .shop-list-prod {
@@ -36,8 +104,8 @@ hr {
   margin: 50px;
 }
 
-
 .shop-form {
+  align-items: center;
   padding: 20px;
   margin: 10px;
 }
@@ -45,6 +113,11 @@ hr {
 .shop-form-message {
   margin-top: 50px;
   margin-left: 50px;
+}
+
+.shop-form-message div {
+  display: flex;
+  justify-content: center;
 }
 
 .shop-form-label {
@@ -70,6 +143,7 @@ button {
     display: none;
   }
   .shop-form {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+  }
 }

@@ -1,184 +1,145 @@
-let imgArray = [];
-let prodArray = [];
-let lastshownprod;
-let previousActiveElement;
-const KEYCODE = {
-    ESC: 27
-};
-const exbtn = document.querySelector(".exbtn");
-const dialog = document.querySelector(".dialog");
-const dialogimg = dialog.querySelector(".dialog__img");
-const dialogtext = dialog.querySelector(".dialog__info");
-const dialogmask = dialog.querySelector(".dialog__mask");
-const shopwindow = dialog.querySelector("#shop-window");
 const main = document.querySelector(".flex__products");
-const sort = document.querySelector("#sort__option")
 
+const showProductWindow = document.querySelector('.show-product-window');
+const overlay = document.querySelector('.overlay');
+const closeProductWindow = document.querySelector('.close-product-window');
+const popupProductWindow = document.querySelector('.popup-product-window');
+const imgBlock = document.querySelector('.img__block')
+const cartCount = document.querySelector('.cartCount')
+const sort = document.querySelector("#category__sort")
+let div = document.createElement("div");
+
+div.setAttribute("class", "shop-div");
+
+main.append(div);
+let inputSearch = document.querySelector('#inputSearch')
 fetch("./images.json")
-    .then((response) => response.json())
-
-    .then((data) => {
-
-        let imgData = data;
-
-        imgData.forEach((images) => {
-            let div = document.createElement("div");
-            div.setAttribute("class", "shop-div");
-            main.append(div);
-
-            imgArray.push(images.url);
-            prodArray.push(images);
+  .then((response) => response.json())
+  .then((data) => {
+    let imgData = data;
+    showProducts(imgData)
+    //Går igenom alla object med map loopen och skickar in dom i showProducts()
 
 
-            div.innerHTML += ` <div class='img__block'> <img class=${images.class} src=${images.url}>
-            <h2>${images.title}</h2> <h3>Storlek: ${images.info.size}x${images.info.size1}cm     Pris: ${images.info.price}kr</h3></div>`;
-        });
 
-        let showimg = document.querySelectorAll(".popup-img");
+    const originalArray = [...imgData]
+    sort.addEventListener('change', (e) => sortNew(e.target.value, originalArray))
+    const sortNew = (value, originalArray) => {
+      const option = value;
+      if (option === 'price') {
+        imgData.sort((a, b) => {
+          return a.info.price - b.info.price
+        })
+        showProducts(imgData)
+      } else if (option === 'size') {
+        imgData.sort((a, b) => {
+          return a.info.size * a.info.size1 - b.info.size * b.info.size1
+        })
+        showProducts(imgData)
+      } else if (option === 'first') {
+        showProducts(originalArray)
+      }
+    }
 
-        if (showimg) {
-            showimg.forEach(function (img, index) {
-                img.onclick = function () {
-                    lastshownprod = index;
-                    let i = lastshownprod;
-                    popUpWindow();
+    //Function som returnerar objektet till showProducts 
+    function showProducts(images) {
+      document.querySelector('.shop-div').innerHTML = ''
+      images.map(images => {
+        document.querySelector('.shop-div').insertAdjacentHTML('beforeend', ` <div class='img__block'> <img id=${images.id} src=${images.url}><h2>${images.title}</h2> <h3>Storlek: ${images.info.size}x${images.info.size1}cm Pris: ${images.info.price}kr</h3></div>`);
 
-                    let title = document.createElement("h2");
-                    title.setAttribute("class", "shop-popup-title");
-                    dialogtext.appendChild(title);
-
-                    let img = document.createElement("img");
-                    img.setAttribute("class", "shop-popup-img");
-                    dialogimg.appendChild(img);
-
-                    let desc = document.createElement("p");
-                    desc.setAttribute("class", "shop-popup-desc");
-                    dialogtext.appendChild(desc);
-
-                    let size = document.createElement("p");
-                    size.setAttribute("class", "shop-popup-size");
-                    dialogtext.appendChild(size);
-
-                    let price = document.createElement("p");
-                    price.setAttribute("class", "shop-popup-price");
-                    dialogtext.appendChild(price);
-
-                    let incart = document.createElement("p");
-                    dialogtext.appendChild(incart);
-
-                    let btn = document.createElement("button");
-                    btn.setAttribute("id", "shop-popup-btn");
-                    dialogtext.appendChild(btn);
-                    btn.innerHTML = "Köp";
-
-                    img.setAttribute("src", imgArray[i]);
-                    title.innerHTML = prodArray[i].title;
-                    desc.innerHTML = prodArray[i].info.description;
-                    size.innerHTML = "Storlek: " + prodArray[i].info.size + "x" + prodArray[i].info.size1 + "cm";
-                    price.innerHTML = "Pris: " + prodArray[i].info.price + "kr";
+      })
+      document.querySelector('.img__block').addEventListener('click', (e) => productPopup(e.target.id))
+    }
 
 
-                    function popUpWindow() {
-                        previousActiveElement = document.activeElement;
 
-                        dialog.classList.add("opened");
+    function productPopup(id) {
+      console.log(id);
+      if (id != '') {
+        let images = imgData.find(image => image.id === id) //INGA {} LOCKIGA HÄNGLÅS = MÅSVINGAR. Här skapar vi en variabel som innehåller all information av det objektet som matchar id:et
 
-                        dialogmask.addEventListener("click", closeDialog);
-                        exbtn.addEventListener("click", closeDialog);
-                        document.addEventListener("keydown", checkCloseDialog);
+        //Tar bort hidden class från popupProductWindow & overlay.
+        popupProductWindow.classList.remove('hidden');
+        overlay.classList.remove('hidden');
+        //Skickar in hela object i popupProductWindow och skapar ett button element med function closeShopWindow() som stänger popupProductWindow vid klick.
+        popupProductWindow.innerHTML = `<div class='popupProduct'> <img src=${images.url} id=${images.id}>
+        <h2>${images.title}</h2> <h3> ${images.info.description}</h3> <h4>Storlek: ${images.info.size}x${images.info.size1}cm     Pris: ${images.info.price}kr</h4> <button class="btn-buy">Köp Produkt</button></div> <button onclick=closeShopWindow() class="close-product-window">&times;</button>`
 
-                        dialog.querySelector(".exbtn").focus();
-                    }
+        const buyBtn = document.querySelector('.btn-buy')
+        buyBtn.addEventListener('click', () => buyProduct(images))
+      }
+    }
+    document.querySelector('#inputSearch').addEventListener('input', (e) => findTitle(e.target.value))
 
-                    function checkCloseDialog(press) {
-                        if (press.keyCode === KEYCODE.ESC) closeDialog();
-                    }
+    function findTitle(title) {
+      if (title != undefined) {
+        console.log(title)
+        console.log(document.querySelector('#inputSearch').value);
+        title = title.charAt(0).toUpperCase() + title.slice(1);
+        console.log(title);
+        const result = imgData.find(image => image.title === title)
+        console.log(result);
+        document.querySelector('.shop-div').innerHTML = ''
 
-                    function closeDialog() {
-                        dialogmask.removeEventListener("click", closeDialog);
-                        exbtn.removeEventListener("click", closeDialog);
-                        document.removeEventListener("keydown", checkCloseDialog);
-                        document.querySelector("#shop-popup-btn").remove();
+        document.querySelector('.shop-div').insertAdjacentHTML('beforeend', ` <div class='img__block'> <img id=${result.id} src=${result.url}><h2>${result.title}</h2> <h3>Storlek: ${result.info.size}x${result.info.size1}cm Pris: ${result.info.price}kr</h3></div>`);
 
-                        dialogtext.innerHTML = "";
-                        dialogimg.innerHTML = "";
 
-                        dialog.classList.remove("opened");
-                        previousActiveElement.focus();
-                    }
+        document.querySelector('.img__block').addEventListener('click', (e) => productPopup(e.target.id))
+      } else if (document.querySelector('#inputSearch').value == '') {
+        showProducts(imgData)
+      }
 
-                    // add to cart //
-                    let shopPopupBtn = document.querySelectorAll("#shop-popup-btn");
 
-                    for (let i = 0; i < shopPopupBtn.length; i++) {
-                            shopPopupBtn[i].addEventListener("click", () => {
-                            cartNumbers();
-                        });
-                    }
-                        function cartNumbers() {
-                            totalprice();
+    }
 
-                            let productNumbers = localStorage.getItem('cartNumbers');
-    
-                            productNumbers = parseInt(productNumbers);
-    
-                            if (productNumbers) {
-                                localStorage.setItem('cartNumbers', productNumbers + 1);
-                                document.querySelector('.btn__cart span').textContent = productNumbers + 1;
-                            } else {
-                                localStorage.setItem('cartNumbers', 1);
-                                document.querySelector('.btn__cart span').textContent = 1;
-                            }
-    
-                           setItems(title, desc, price, size, incart);
-                        }
-    
-                        function setItems() {
-                            let cartItems = localStorage.getItem('productsInCart');
-    
-                            cartItems = JSON.parse(cartItems);
+  });
+window.onload = () => {
+  const boughtProducts = JSON.parse(localStorage.getItem("products") || "[]");
 
-                            if(cartItems != null){
+  cartCount.textContent = boughtProducts.length
+}
+//Localstorage
+const buyProduct = (image) => {
+  const boughtProducts = JSON.parse(localStorage.getItem("products") || "[]");
+  const newProduct = {
+    title: image.title,
+    price: image.info.price,
+    imgUrl: image.url,
+    id: image.id
+  }
+  boughtProducts.push(newProduct)
+  localStorage.setItem('products', JSON.stringify(boughtProducts))
+  cartCount.textContent = boughtProducts.length
+}
 
-                                prodArray[i].inCart += 1;
+//Function som lägger till hidden till popupProductWindow & overlay.
+const closeShopWindow = () => {
+  popupProductWindow.classList.add('hidden');
+  overlay.classList.add('hidden');
+};
+//Gör en Eventlistener att om du klickar på Esc på försvinner popupProductWindow
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && !popupProductWindow.classList.contains('hidden')) {
+    closeShopWindow();
+  }
+});
+// displayImg(imgData)
+// sort.addEventListener('change', (e) => sortNew(e.target.value))
+// const sortNew = (value) => {
+//   const option = value;
+//   if (option === 'price') {
+//     imgData,
+//     sort((a, b) => {
+//       return a.info.price - b.info.price
+//     })
+//     displayImg
+//   }
+// }
 
-                                cartItems = {
-                                    product: {
-                                        title: prodArray[i].title,
-                                        desc: prodArray[i].info.description,
-                                        size: prodArray[i].info.size +"x"+ prodArray[i].info.size1,
-                                        price: prodArray[i].info.price,
-                                        incart: prodArray[i].inCart}
-                                }
-                            }
-                            else{
-                                prodArray[i].inCart = 1;
-    
-                                cartItems = {
-                                    product: {
-                                        title: prodArray[i].title,
-                                        desc: prodArray[i].info.description,
-                                        size: prodArray[i].info.size +"x"+ prodArray[i].info.size1,
-                                        price: prodArray[i].info.price,
-                                        incart: prodArray[i].inCart}
-                                }
-                            }
-
-                            localStorage.setItem("productsInCart", JSON.stringify(cartItems));
-                        }
-
-                        function totalprice(){
-                            let carttotal = localStorage.getItem("totalCost");
-
-                            if(carttotal != null){
-                                carttotal = parseInt(carttotal);
-                                localStorage.setItem("totalCost", carttotal + prodArray[i].info.price);
-                            }
-                            else{
-                                localStorage.setItem("totalCost", prodArray[i].info.price);
-                            }
-                        }
-                    }
-            });
-        }
-    });
+// function displayImg(image) {
+//   document.querySelector('shop-div').innerHTML = ''
+//   images.map(images => {
+//     document.querySelector('shop-div').insertAdjacentHTML('beforeend', `<div class='img__block'> <img src=${images.url} id="${images.id}">
+//     <h2>${images.title}</h2> <h3>Storlek: ${images.info.size}x${images.info.size1}cm Pris: ${images.info.  price}kr</h3></div>`)
+//   })
+// }
